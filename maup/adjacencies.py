@@ -1,3 +1,22 @@
+"""
+    ~~/maup/adjacencies.py~~
+
+    Written and commented by @maxhully between April '19 and March '20. 
+    Addditional commentary by @gomotopia, May 2021. 
+
+    Used by maup/repair.py
+
+    Uses geopandas.GeoSeries.intersection to check if a pair of shapes have
+    an intersection. An intersection can be similiar points or lines. If the
+    areas of these intersetions are non-zero, then they are overlapped. If the
+    If there is only one zero-area intersection, they are Queen adjacent.
+     _ _ _ 
+    |_|_|_|<- Corner pieces are often only Queen adjacencies  
+    |_|_|_|<- whereas side pieces are both Rook and Queen adjacencies
+    |_|_|_|   becaues they share both corners and sides as zero-area intersections. 
+    
+"""
+
 import warnings
 
 from geopandas import GeoSeries
@@ -7,14 +26,60 @@ from .progress_bar import progress
 
 
 class OverlapWarning(UserWarning):
+    """Raises UserWarning if any shapes overlap. To be expanded
+    later. 
+
+
+    Raises
+    ------
+    UserWarning, in time. 
+
+    Returns
+    -------
+    null
+    """
     pass
 
 
 class IslandWarning(UserWarning):
+    """Raises UserWarning if any shape is an island, without
+    adjacencies. To be expanded later. 
+
+
+    Raises
+    ------
+    UserWarning, in time. 
+
+    Returns
+    -------
+    null
+    """
     pass
 
 
 def iter_adjacencies(geometries):
+    """A generator that creates an enumerated list of adjacent shapes. 
+
+    Takes a list of of geometries and creates a query of possible neighboring
+    shapes. We then filter our shapes we've looked at before to prevent double-
+    counting. If a possible intersection is found to be non-empty or null,
+    is is yielded. 
+
+    Parameters
+    ----------
+    geometries : pandas.geoDataFrame
+        Candidates for adjacent shapes. 
+
+    Yields
+    -------
+    int, int, shapely.BaseGeometry
+        Returns enumeration, with indicies, of a tuple of a 
+        pair of geometries and their intersection. 
+
+    Raises
+    ------
+
+    """
     indexed = IndexedGeometries(geometries)
     for i, geometry in progress(indexed.geometries.items(), len(indexed.geometries)):
         possible = indexed.query(geometry)
@@ -33,6 +98,32 @@ def adjacencies(
     intersection between geometry `i` and geometry `j`. We ensure that
     `i < j` always holds, so that any adjacency is represented just once
     in the series.
+
+    Combines iterated adjacencies into a geopandas.GeoSeries. 
+
+    Note
+    ----
+    A rook adjacency exists if two or more intersections exist between
+    border i and j, especially if one is a point! Queen adjacencies may
+    only have one point in overlap.  
+
+    Returns
+    -------
+    geopandas.GeoSeries
+        Multi-indexed series of intersections described by the index of two 
+        shapes.
+
+    Raises
+    ------
+    ValueError
+        Ensures that the type of adjacency is "rook" or "queen." 
+    OverlapWarning
+        If the intersection is more than just a point or line, 
+        there is an overlap! 
+    IslandWarning  
+        Takes the set of all indexes and removes any that belongs
+        to an intersected pair. If any index is not part of a pair,
+        then its geometry is an island and the IslandWarning is raised. 
     """
     if adjacency_type not in ["rook", "queen"]:
         raise ValueError('adjacency_type must be "rook" or "queen"')
