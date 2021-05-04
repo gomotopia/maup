@@ -116,12 +116,12 @@ def assign_to_max(weights):
 
     Parameters
     ----------   
-    weights : geopandas.geodataframe.GeoDataFrame ? result of intersections?
-        Intersections carrying value by which to weight assignments. 
+    weights : pandas.Series
+        Series carrying value by which to weight assignments. 
 
     Returns
     -------
-    maup.IndexedGeometries ?
+    pandas.Series
 
     Raises
     ------
@@ -135,7 +135,7 @@ def drop_source_label(index):
 
     Parameters
     ----------   
-    index : geopandas.geodataframe.GeoDataFrame, optional? 
+    index : geopandas.GeoDataFrame, optional? 
         Index column to replace  
 
     Returns
