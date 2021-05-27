@@ -1,7 +1,8 @@
 """
     ~~/maup/adjacencies.py~~
 
-    Written and commented by @maxhully between April '19 and March '20. 
+    Written and commented by @maxhully between April '19 and March '20.
+    With contributions by @RKBuck1.
     Addditional commentary by @gomotopia, May 2021. 
 
     Used by maup/repair.py
@@ -14,7 +15,7 @@
     |_|_|_|<- Corner pieces are often only Queen adjacencies  
     |_|_|_|<- whereas side pieces are both Rook and Queen adjacencies
     |_|_|_|   becaues they share both corners and sides as zero-area intersections. 
-    
+
 """
 
 import warnings

@@ -13,7 +13,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (1.0.2+r75+1)"
-   sodipodi:docname="chart.svg">
+   sodipodi:docname="chart.svg"
+   inkscape:export-filename="/home/ryan/Documents/MGGG/maupchart.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2">
     <marker
@@ -273,16 +276,16 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.37049851"
-     inkscape:cx="1242.2744"
-     inkscape:cy="599.66886"
+     inkscape:cx="283.69271"
+     inkscape:cy="549.37791"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1398"
      inkscape:window-height="639"
-     inkscape:window-x="67"
-     inkscape:window-y="116"
+     inkscape:window-x="0"
+     inkscape:window-y="120"
      inkscape:window-maximized="0"
      units="in"
      objecttolerance="1">

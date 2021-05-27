@@ -3,7 +3,7 @@
 
     Written by @maxhully in March '19 with corrections in March '20. 
     Contributions by @tylerjarvis and @madeleinegoertz, early '20. 
-
+    And contributions by @RKBuck1.
     Commentary by @gomotopia, May 2021. 
 
     Class used as primary shape object for performing calculations. 
